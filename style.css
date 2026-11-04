@@ -15,18 +15,23 @@ main{
     height: 100vh;
     background-color: white;
     border-right: 2px rgb(197, 197, 197);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #sectionMapa{
     background-color: rgb(230, 227, 227);
     width: calc(100vw - 300px);
     height: 100vh;
+    position: relative;
 }
 
 
 #bola{
-    --x: 0;
-    --y: 0;
+    --x: 800px;
+    --y: 600px;
     top: var(--y);
     left: var(--x);
     width: 30px;
@@ -38,9 +43,8 @@ main{
 
 
 
-
 #tabla{
-    --x: 0;
+    --x: 730px;
     width: 170px;
     height: 40px;
     background-color: black;
@@ -48,4 +52,50 @@ main{
     position: relative;
     top: 780px;
     left: var(--x);
+}
+
+
+
+#divBarras{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 200px 0px;
+    top: 0;
+    left: 0;
+    position: absolute;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    gap: 30px;
+    justify-content: center;
+    align-content: start;
+    
+}
+
+.barrera{
+    width: 150px;
+    height: 30px;
+    background-color: red;
+}
+
+
+#divStats{
+    top: 0;
+    right: 30px;
+    position: absolute;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+#empezar{
+    width: 150px;
+    height: 40px;   
+    border-radius: 6px;
+    background-color: aqua;
+    border: 0;
+    cursor: pointer;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
