@@ -3,6 +3,7 @@ const sectionMapa = document.querySelector("#sectionMapa")
 const main = document.querySelector("main")
 const empezar = document.querySelector("#empezar")
 const divStats = document.querySelector("#divStats")
+const reload = document.querySelector("#reload")
 
 let vidas = 3
 let puntos = 0
@@ -49,7 +50,15 @@ todaBarrera.forEach(element => {
 
 empezar.addEventListener("click", mover)
 
+let movimiento = ""
+
 function mover(){
+
+    reload.style.display = ""
+    empezar.style.display = "none"
+    
+    posTabla.posX = 730
+    tabla.style.setProperty("--x", posTabla.posX + "px")
 
     todaBarrera.forEach(element =>{
         element.style.visibility = ""
@@ -58,13 +67,13 @@ function mover(){
 
     empezar.style.display = "none"
    
-    let movimiento = setInterval(() =>{
+    movimiento = setInterval(() =>{
         pos.posX = pos.posX + pos.velX
         bola.style.setProperty("--x", pos.posX + "px")
         if(pos.posX > sectionMapa.offsetWidth - 60 || pos.posX < 2){pos.velX *= -1}
         
-        if((pos.posX + 50 > posTabla.posX && pos.posX < posTabla.posX + tabla.offsetWidth) && pos.posY >= 780){
-            pos.velX = ((pos.posX + 25 - posTabla.posX) - (tabla.offsetWidth / 2)) / 6
+        if((pos.posX + 10 > posTabla.posX && pos.posX < posTabla.posX + tabla.offsetWidth) && pos.posY >= 780){
+            pos.velX = ((pos.posX + 25 - posTabla.posX) - (tabla.offsetWidth / 2)) / 4
             pos.velY *= -1 
         }   
 
@@ -100,7 +109,6 @@ function mover(){
             divStats.innerHTML = `<p>Puntos: ${puntos} | Vidas: ${vidas}</p>`
             if(vidas <= 0){
                 clearInterval(movimiento)
-                empezar.style.display = ""
                 vidas = 3
                 puntos = 0
             }
@@ -112,4 +120,21 @@ function mover(){
 
 
 
+reload.addEventListener("click", () =>{
+    vidas = 3
+    puntos = 0
+    clearInterval(movimiento)
+    posTabla.posX = 730
+    pos.posX = 800
+    pos.posY = 600  
+    tabla.style.setProperty("--x", posTabla.posX + "px")
 
+    todaBarrera.forEach(element =>{
+        element.style.visibility = ""
+    })
+
+    empezar.style.display = ""
+    reload.style.display = "none"
+    bola.style.setProperty("--y", pos.posY + "px")
+    bola.style.setProperty("--x", pos.posX + "px")
+})
