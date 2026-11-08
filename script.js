@@ -28,13 +28,14 @@ const todaBarrera = document.querySelectorAll(".barrera")
 
 
 document.addEventListener("keydown", (e) => {
-    if(e.key == "d") {
+    let key = e.key.toUpperCase()
+    if(key == "D") {
         if(posTabla.posX < (sectionMapa.offsetWidth - tabla.offsetWidth) - 15){
             console.log(e.key)
             posTabla.posX += posTabla.velX
             tabla.style.setProperty("--x", posTabla.posX + "px")
         }
-    }else if(e.key == "a"){
+    }else if(key == "A"){
         if(posTabla.posX > 0){
             posTabla.posX -= posTabla.velX
             tabla.style.setProperty("--x", posTabla.posX + "px")
